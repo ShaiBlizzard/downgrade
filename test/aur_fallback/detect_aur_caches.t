@@ -1,5 +1,6 @@
   $ source "$TESTDIR/../helper.sh"
   > PACMAN_LOG=/dev/null
+  $ unset XDG_CACHE_HOME
 
 Detects yay cache when present
 
@@ -27,6 +28,23 @@ Detects both when both present
   > detect_aur_caches
   /tmp/*/yay (glob)
   /tmp/*/paru/clone (glob)
+
+Detects both when both present, with xdg taking precedence
+
+  $ fake_home=$(mktemp -d --suffix @home)
+  $ fake_xdg=$(mktemp -d --suffix @xdg)
+  > XDG_CACHE_HOME="$fake_xdg"
+  > mkdir -p "$fake_xdg/yay"
+  > mkdir -p "$fake_xdg/paru/clone"
+  > mkdir -p "$fake_home/.cache/yay"
+  > mkdir -p "$fake_home/.cache/paru/clone"
+  > get_real_user_home() { echo "$fake_home"; }
+  > detect_aur_caches
+  /tmp/*@xdg/yay (glob)
+  /tmp/*@xdg/paru/clone (glob)
+Unset so doesnt get used by other tests
+  $ unset XDG_CACHE_HOME
+
 
 Returns nothing when neither present
 

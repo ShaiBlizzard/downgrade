@@ -1,6 +1,5 @@
   $ source "$TESTDIR/../helper.sh"
   > PACMAN_LOG=/dev/null
-  $ unset XDG_CACHE_HOME
 
 Detects yay cache when present
 

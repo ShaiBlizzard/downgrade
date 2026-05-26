@@ -41,9 +41,6 @@ Detects both when both present, with xdg taking precedence
   > detect_aur_caches
   /tmp/*@xdg/yay (glob)
   /tmp/*@xdg/paru/clone (glob)
-Unset so doesnt get used by other tests
-  $ unset XDG_CACHE_HOME
-
 
 Returns nothing when neither present
 

@@ -39,6 +39,7 @@ Detects both when both present, with xdg taking precedence
   > mkdir -p "$fake_home/.cache/paru/clone"
   > get_real_user_home() { echo "$fake_home"; }
   > detect_aur_caches
+  > XDG_CACHE_HOME=
   /tmp/*@xdg/yay (glob)
   /tmp/*@xdg/paru/clone (glob)
 
